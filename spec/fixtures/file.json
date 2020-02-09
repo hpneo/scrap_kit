@@ -1,0 +1,11 @@
+{
+  "url": "https://hpneo.dev/",
+  "attributes": {
+    "posts": {
+      "selector": ".post-item",
+      "children_attributes": {
+        "title": "h2"
+      }
+    }
+  }
+}
