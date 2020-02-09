@@ -13,3 +13,5 @@ jobs:
     steps:
       - name: Publish gem
         uses: dawidd6/action-publish-gem@v1.0.0
+        with:
+          api_key: ${{secrets.RUBYGEMS_API_KEY}}
