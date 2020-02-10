@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScrapKit - Scrap web sites using JSON-based recipes</title>
+  <link href="styles.css" rel='stylesheet' type="text/css">
+  <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16">
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-column">
+        <h1>ScrapKit</h1>
+        <p>Scrap web sites using JSON-based recipes.</p>
+        <br>
+        <code>gem install scrap_kit</code>
+        <br>
+        <br>
+        <p>
+          <a href="https://github.com/hpneo/scrap_kit" target="_blank" rel="noopener noreferrer" class="smaller">View on Github</a>
+        </p>
+      </div>
+      <div class="hero-column">
+        <img src="images/carbon.png" alt="Demo">
+      </div>
+    </div>
+  </section>
+  <section class="content">
+    <h2>What does it do?</h2>
+    <p>ScrapKit automates web scraping and converts the results in plain objects by using configuration objects called <em>recipes</em>.</p>
+
+    <p>Each recipe can be loaded as an object or as JSON file, and have the following structure:</p>
+
+    <pre><div>{</div><div>  <span style="color: #9cdcfe;">"url"</span>: <span style="color: #ce9178;">"https://status.heroku.com/"</span>,</div><div>  <span style="color: #9cdcfe;">"attributes"</span>: {</div><div>    <span style="color: #9cdcfe;">"apps"</span>: <span style="color: #ce9178;">".subnav__inner .ember-view:nth-child(1) &gt; .status-summary__description"</span>,</div><div>    <span style="color: #9cdcfe;">"data"</span>: <span style="color: #ce9178;">".subnav__inner .ember-view:nth-child(2) &gt; .status-summary__description"</span>,</div><div>    <span style="color: #9cdcfe;">"tools"</span>: <span style="color: #ce9178;">".subnav__inner .ember-view:nth-child(3) &gt; .status-summary__description"</span></div><div>  }</div><div>}</div></pre>
+
+    <ul>
+      <li><code>url</code>: It defines the web page to scrape.</li>
+      <li><code>attributes</code>: Is an object that maps each attribute name with its corresponding CSS selector.</li>
+    </ul>
+
+    <p><code>attributes</code> can have a more complex structure to handle collections. For example:</p>
+
+    <pre><div>{</div><div>  <span style="color: #9cdcfe;">"url"</span>: <span style="color: #ce9178;">"https://hpneo.dev/"</span>,</div><div>  <span style="color: #9cdcfe;">"attributes"</span>: {</div><div>    <span style="color: #9cdcfe;">"posts"</span>: {</div><div>      <span style="color: #9cdcfe;">"selector"</span>: <span style="color: #ce9178;">".post-item"</span>,</div><div>      <span style="color: #9cdcfe;">"children_attributes"</span>: {</div><div>        <span style="color: #9cdcfe;">"title"</span>: <span style="color: #ce9178;">"h2"</span></div><div>      }</div><div>    }</div><div>  }</div><div>}</div></pre>
+
+    <p>In this case <code>attributes</code> has a <code>posts</code> key, which will store the results of a collection, defined by a CSS <code>selector</code> and an object of children attributes.</p>
+
+    <p><code>children_attributes</code> is an object that maps each attribute name with its corresponding CSS selector (similar to how <code>attributes</code> works in its simpler version).</p>
+
+    <h2>Installation</h2>
+    <p>
+      Add this line to your application's Gemfile:
+      <pre>gem 'scrap_kit'</pre>
+      And then execute:
+      <pre>$ bundle</pre>
+      Or install it yourself as:
+      <pre>$ gem install scrap_kit</pre>
+    </p>
+
+    <h2>Usage</h2>
+
+    <p><code>ScrapKit::Recipe.load</code> can take an object with the recipe, or load a JSON file.</p>
+
+    <pre><div><span style="color: #9cdcfe;">recipe</span> = <span style="color: #4ec9b0;">ScrapKit</span>::<span style="color: #4ec9b0;">Recipe</span>.<span style="color: #dcdcaa;">load</span>(</div><div>  <span style="color: #569cd6;">url:</span> <span style="color: #ce9178;">"https://status.heroku.com/"</span>,</div><div>  <span style="color: #569cd6;">attributes:</span> {</div><div>    <span style="color: #569cd6;">apps:</span> <span style="color: #ce9178;">".subnav__inner .status-summary:nth-child(1) &gt; .status-summary__description"</span>,</div><div>    <span style="color: #569cd6;">data:</span> <span style="color: #ce9178;">".subnav__inner .status-summary:nth-child(2) &gt; .status-summary__description"</span>,</div><div>    <span style="color: #569cd6;">tools:</span> <span style="color: #ce9178;">".subnav__inner .status-summary:nth-child(3) &gt; .status-summary__description"</span>,</div><div>  }</div><div>)</div><br><div><span style="color: #9cdcfe;">output</span> = <span style="color: #9cdcfe;">recipe</span>.run</div><div><span style="color: #6a9955;">#=&gt; {:apps=&gt;"ok", :data=&gt;"ok", :tools=&gt;"ok"}</span></div></pre>
+
+    <p>For more complex structures it's recommended to store the recipe in a JSON file:</p>
+
+    <pre><div><span style="color: #9cdcfe;">recipe</span> = <span style="color: #4ec9b0;">ScrapKit</span>::<span style="color: #4ec9b0;">Recipe</span>.<span style="color: #dcdcaa;">load</span>(<span style="color: #ce9178;">"./spec/fixtures/file.json"</span>)</div><br><div><span style="color: #9cdcfe;">output</span> = <span style="color: #9cdcfe;">recipe</span>.run</div><div><span style="color: #6a9955;">#=&gt; {:posts=&gt;[{:title=&gt;"APIs de Internacionalización en JavaScript"}, {:title=&gt;"Ejecutando comandos desde Ruby"}, {:title=&gt;"Usando Higher-Order Components"}]}</span></div></pre>
+  </section>
+</body>
+</html>
