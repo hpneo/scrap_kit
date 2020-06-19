@@ -32,6 +32,26 @@ module ScrapKit
     def run_step(browser, step)
     end
 
+    def elements_from_selector(browser_or_element, selector)
+      if selector.is_a?(String)
+        browser_or_element.elements(css: selector)
+      elsif selector.is_a?(Array)
+        *remainder, condition = selector
+        elements = browser_or_element
+
+        remainder.each do |item|
+          elements = elements.elements(css: item)
+        end
+
+        elements.filter do |element|
+          condition_key = condition.keys[0].to_s
+          condition_value = condition.values[0]
+          found_element = element.element(css: condition_key)
+          found_element&.text_content&.match(condition_value)
+        end
+      end
+    end
+
     def extract_attribute(browser_or_element, selector_or_hash)
       if selector_or_hash.is_a?(String)
         browser_or_element.element(css: selector_or_hash)&.text_content
@@ -39,7 +59,7 @@ module ScrapKit
         selector = selector_or_hash[:selector]
         selector_for_children_attributes = selector_or_hash[:children_attributes]
 
-        browser_or_element.elements(css: selector).map do |element|
+        elements_from_selector(browser_or_element, selector).map do |element|
           output = {}
 
           selector_for_children_attributes.each do |child_attribute_name, child_selector|
