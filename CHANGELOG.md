@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.1.4] 2020-07-12
+
+### Changed/Added
+- Add support for `<input />` elements
+
+## [0.1.3] 2020-06-18
+
+### Changed/Added
+- Moved development dependencies as dependencies
+
 ## [0.1.2] 2020-06-18
 
 ### Changed/Added
@@ -9,6 +19,7 @@
 
 ### Changed/Added
 - Update activesupport requirement from = 6.0.2.1 to = 6.0.3.1
+- Update rake requirement from ~> 10.0 to ~> 13.0
 
 ## [0.1.0] 2020-02-09
 

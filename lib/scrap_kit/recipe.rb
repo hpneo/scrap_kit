@@ -47,14 +47,24 @@ module ScrapKit
           condition_key = condition.keys[0].to_s
           condition_value = condition.values[0]
           found_element = element.element(css: condition_key)
-          found_element&.text_content&.match(condition_value)
+          extract_value_from_element(found_element)&.match(condition_value)
         end
       end
     end
 
+    def extract_value_from_element(element)
+      if element&.respond_to?(:tag_name)
+        if element.tag_name.downcase == "input"
+          return element.attribute_value(:value)
+        end
+      end
+
+      element&.text_content
+    end
+
     def extract_attribute(browser_or_element, selector_or_hash)
       if selector_or_hash.is_a?(String)
-        browser_or_element.element(css: selector_or_hash)&.text_content
+        extract_value_from_element(browser_or_element.element(css: selector_or_hash))
       elsif selector_or_hash.is_a?(Hash)
         selector = selector_or_hash[:selector]
         selector_for_children_attributes = selector_or_hash[:children_attributes]
