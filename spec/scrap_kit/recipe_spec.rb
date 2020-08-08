@@ -17,14 +17,9 @@ RSpec.describe ScrapKit::Recipe do
     recipe = ScrapKit::Recipe.load("./spec/fixtures/file.json")
     output = recipe.run
 
-    expect(output).to eq(
-      posts: [
-        { title: "Usando OpenStruct" },
-        { title: "Aprendiendo a usar arrays en JavaScript" },
-        { title: "APIs de Internacionalización en JavaScript" },
-        { title: "Ejecutando comandos desde Ruby" },
-        { title: "Usando Higher-Order Components" }
-      ]
+    expect(output[:posts]).to include(
+      { title: "Creando bookmarks de CodeMirror con Preact" },
+      { title: "Estructuras de datos para React" }
     )
   end
 
@@ -44,11 +39,6 @@ RSpec.describe ScrapKit::Recipe do
 
     output = recipe.run
 
-    expect(output).to eq(
-      results: [
-        { region: "US REGION", uptime: "99.999709%" },
-        { region: "EU REGION", uptime: "99.999994%" }
-      ]
-    )
+    expect(output[:results].map { |result| result[:region] }).to eq(["US REGION", "EU REGION"])
   end
 end
