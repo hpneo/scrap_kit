@@ -1,4 +1,5 @@
 require "active_support/core_ext/hash"
+require "webdrivers/chromedriver"
 require "watir"
 
 module ScrapKit
