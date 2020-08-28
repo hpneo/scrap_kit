@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.6] 2020-08-28
+- Update activesupport requirement from = 6.0.2.1 to ~> 6.0
+- Fix bug when matching selector condition
+
 ## [0.1.5] 2020-08-08
 
 ### Changed/Added

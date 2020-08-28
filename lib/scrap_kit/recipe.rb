@@ -45,10 +45,10 @@ module ScrapKit
         end
 
         elements.filter do |element|
-          condition_key = condition.keys[0].to_s
-          condition_value = condition.values[0]
+          condition_key = condition.keys.first.to_s
+          condition_value = condition.values.first
           found_element = element.element(css: condition_key)
-          extract_value_from_element(found_element)&.match(condition_value)
+          extract_value_from_element(found_element) == condition_value
         end
       end
     end
