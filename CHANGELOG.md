@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.1.7] 2020-08-28
+- Match selector condition by regexp or exact value
+
 ## [0.1.6] 2020-08-28
 - Update activesupport requirement from = 6.0.2.1 to ~> 6.0
 - Fix bug when matching selector condition

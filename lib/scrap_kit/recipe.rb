@@ -48,7 +48,8 @@ module ScrapKit
           condition_key = condition.keys.first.to_s
           condition_value = condition.values.first
           found_element = element.element(css: condition_key)
-          extract_value_from_element(found_element) == condition_value
+          extracted_value = extract_value_from_element(found_element)
+          extracted_value.match(condition_value) || extracted_value == condition_value
         end
       end
     end
