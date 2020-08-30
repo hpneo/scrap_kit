@@ -1,9 +1,19 @@
 # Changelog
 
+## [0.1.8] 2020-08-29
+
+### Changed/Added
+- Add new ways to declare selectors
+- Add steps
+
 ## [0.1.7] 2020-08-28
+
+### Changed/Added
 - Match selector condition by regexp or exact value
 
 ## [0.1.6] 2020-08-28
+
+### Changed/Added
 - Update activesupport requirement from = 6.0.2.1 to ~> 6.0
 - Fix bug when matching selector condition
 

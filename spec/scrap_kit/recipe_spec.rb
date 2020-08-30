@@ -41,4 +41,46 @@ RSpec.describe ScrapKit::Recipe do
 
     expect(output[:results].map { |result| result[:region] }).to eq(["US REGION", "EU REGION"])
   end
+
+  it 'Run a "Go to a link" step' do
+    recipe = ScrapKit::Recipe.load(
+      url: "https://status.heroku.com/",
+      steps: [
+        {
+          goto: { text: "View Archive" }
+        }
+      ],
+      attributes: {
+        incidents: {
+          selector: ".list-group-item.incidents__list__item",
+          children_attributes: {
+            title: ".incidents__list__item__title",
+            date: ".incidents__list__item__date"
+          }
+        }
+      }
+    )
+
+    output = recipe.run
+
+    expect(output[:incidents].size).to eq(15)
+  end
+
+  it 'Run a "Fill form" step' do
+    recipe = ScrapKit::Recipe.load(
+      url: "https://translate.google.com/?sl=en&tl=es",
+      steps: [
+        {
+          fill_form: { "#source": "hello" }
+        }
+      ],
+      attributes: {
+        result: ".tlid-translation.translation"
+      }
+    )
+
+    output = recipe.run
+
+    expect(output[:result]).to eq("Hola")
+  end
 end

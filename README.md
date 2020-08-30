@@ -81,6 +81,66 @@ output = recipe.run
 #=> {:posts=>[{:title=>"APIs de Internacionalización en JavaScript"}, {:title=>"Ejecutando comandos desde Ruby"}, {:title=>"Usando Higher-Order Components"}]}
 ```
 
+### Working with selectors
+
+Each attribute can be mapped to a selector, which can be any of the following types:
+
+* A string, which represents a CSS selector.
+
+```ruby
+".subnav__inner .ember-view:nth-child(1) > .status-summary__description"
+```
+
+* A hash, which can have any of the following options:
+  * `xpath: [String]`
+  * `css: [String]`
+  * `index: [Integer]`
+  * `tag_name: [String]`
+  * `text: [String]`
+
+```ruby
+{ text: "View Archive" }
+```
+
+* An array, which represents a path of selectors, where its last item must be a hash that matches a selector with an expected value.
+
+```ruby
+[".up-time-chart", { ".region-header .u-margin-Tm": "REGION" }]
+```
+
+Use any of them as it suits you best.
+
+### Writing steps
+
+Recipes can have a `steps` entry. This entry defines previous actions the scraper have to follow before extract the attributes. The following steps are supported:
+
+* **`goto`**: It instructs the scraper to go to a link inside the current page. Its value can be a hash or array selector, or a URL:
+
+```ruby
+{
+  goto: { text: "View Archive" }
+}
+```
+
+* **`click`**: It instructs the scraper to click on an element inside the current page. Its value can be a hash or array selector:
+
+```ruby
+{
+  click: { css: "[type=submit]" }
+}
+```
+
+* **`fill_form`**: It instructs the scraper to fill a form or any form field inside the current page. Its value is a hash where the keys are either a input's name or a CSS selector, and the values are the values to be entered into those fields:
+
+```ruby
+{
+  fill_form: {
+    gem_name: "ScrapKit",
+    author: "hpneo",
+  }
+}
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
