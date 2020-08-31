@@ -5,7 +5,7 @@ RSpec.describe ScrapKit::Recipe do
       attributes: {
         apps: ".subnav__inner .ember-view:nth-child(1) > .status-summary__description",
         data: ".subnav__inner .ember-view:nth-child(2) > .status-summary__description",
-        tools: ".subnav__inner .ember-view:nth-child(3) > .status-summary__description",
+        tools: ".subnav__inner .ember-view:nth-child(3) > .status-summary__description"
       }
     )
     output = recipe.run
@@ -19,7 +19,7 @@ RSpec.describe ScrapKit::Recipe do
 
     expect(output[:posts]).to include(
       { title: "Creando bookmarks de CodeMirror con Preact" },
-      { title: "Estructuras de datos para React" }
+      title: "Estructuras de datos para React"
     )
   end
 

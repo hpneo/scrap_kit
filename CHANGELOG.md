@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.9] 2020-08-31
+
+### Changed/Added
+- Set arguments for Chrome driver
+
 ## [0.1.8] 2020-08-29
 
 ### Changed/Added

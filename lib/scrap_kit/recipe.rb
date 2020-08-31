@@ -27,7 +27,7 @@ module ScrapKit
     def run
       output = {}
 
-      @browser = Watir::Browser.new(:chrome, headless: true)
+      @browser = create_browser
       @browser.goto @url
 
       @steps.each do |step|
@@ -191,6 +191,21 @@ module ScrapKit
       @browser.wait_until do
         @browser.ready_state == "complete"
       end
+    end
+
+    def create_browser
+      options = Selenium::WebDriver::Chrome::Options.new
+
+      options.add_argument "--headless"
+      options.add_argument "--window-size=1080x720"
+      options.add_argument "--hide-scrollbars"
+
+      if chrome_bin = ENV["GOOGLE_CHROME_SHIM"]
+        options.add_argument "--no-sandbox"
+        options.binary = chrome_bin
+      end
+
+      Watir::Browser.new(:chrome, options: options)
     end
   end
 end

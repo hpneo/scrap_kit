@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    scrap_kit (0.1.8)
+    scrap_kit (0.1.9)
       activesupport (~> 6.0)
       watir (~> 6.16.5)
       webdrivers (~> 4.0)
