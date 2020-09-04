@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.11] 2020-09-03
+
+### Changed/Added
+- Add `user_agent` accessor for browser
+
 ## [0.1.10] 2020-09-03
 
 ### Changed/Added

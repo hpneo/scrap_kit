@@ -4,6 +4,8 @@ require "watir"
 
 module ScrapKit
   class Recipe
+    attr_accessor :user_agent
+
     class << self
       def load(source)
         input = if source.is_a?(Hash)
@@ -201,6 +203,7 @@ module ScrapKit
       options.add_argument "--headless"
       options.add_argument "--window-size=1080x720"
       options.add_argument "--hide-scrollbars"
+      options.add_argument "--user-agent=#{@user_agent}" if @user_agent
 
       if chrome_bin = ENV["GOOGLE_CHROME_SHIM"]
         options.add_argument "--no-sandbox"
