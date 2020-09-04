@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.12] 2020-09-03
+
+### Changed/Added
+- Return nil if `extract_attribute` fails
+
 ## [0.1.11] 2020-09-03
 
 ### Changed/Added

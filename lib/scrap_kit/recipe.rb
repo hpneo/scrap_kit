@@ -141,6 +141,8 @@ module ScrapKit
           end
         end
       end
+    rescue
+      nil
     end
 
     private
