@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.10] 2020-09-03
+
+### Changed/Added
+- Map attributes to JavaScript calls
+
 ## [0.1.9] 2020-08-31
 
 ### Changed/Added

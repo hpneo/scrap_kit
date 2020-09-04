@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    scrap_kit (0.1.9)
+    scrap_kit (0.1.10)
       activesupport (~> 6.0)
       watir (~> 6.16.5)
       webdrivers (~> 4.0)
@@ -21,7 +21,7 @@ GEM
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     mini_portile2 (2.4.0)
-    minitest (5.14.1)
+    minitest (5.14.2)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     rake (13.0.1)

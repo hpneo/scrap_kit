@@ -125,6 +125,8 @@ module ScrapKit
 
             output
           end
+        elsif selector_or_object[:javascript]
+          @browser.execute_script(selector_or_object[:javascript])
         else
           found_elements = elements_from_selector(browser_or_element, selector_or_object)
 
