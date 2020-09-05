@@ -91,6 +91,8 @@ module ScrapKit
     end
 
     def extract_value_from_element(element)
+      return nil unless element.exists?
+
       if element&.respond_to?(:tag_name)
         if element.tag_name.downcase == "input"
           return element.attribute_value(:value)
@@ -193,7 +195,7 @@ module ScrapKit
         end
       end
 
-      sleep 0.25
+      sleep 1
       @browser.wait_until do
         @browser.ready_state == "complete"
       end

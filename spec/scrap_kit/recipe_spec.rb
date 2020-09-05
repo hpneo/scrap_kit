@@ -10,7 +10,7 @@ RSpec.describe ScrapKit::Recipe do
     )
     output = recipe.run
 
-    expect(output).to eq(apps: "ok", data: "ok", tools: "ok")
+    expect(output).to eq(apps: "ok", data: "ok", tools: "incident")
   end
 
   it "Load recipe from JSON file" do

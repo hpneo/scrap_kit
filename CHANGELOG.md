@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.13] 2020-09-04
+
+### Changed/Added
+- Return nil if element doesn't exist for `extract_value_from_element`
+
 ## [0.1.12] 2020-09-03
 
 ### Changed/Added
