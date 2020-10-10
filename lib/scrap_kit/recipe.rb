@@ -4,7 +4,7 @@ require "watir"
 
 module ScrapKit
   class Recipe
-    attr_accessor :user_agent
+    attr_accessor :user_agent, :browser
 
     class << self
       def load(source)
@@ -214,7 +214,10 @@ module ScrapKit
         options.binary = chrome_bin
       end
 
-      Watir::Browser.new(:chrome, options: options)
+      new_browser = Watir::Browser.new(:chrome, options: options)
+      new_browser.driver.manage.timeouts.page_load = 120
+
+      new_browser
     end
   end
 end

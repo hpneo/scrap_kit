@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.14] 2020-10-10
+
+### Changed/Added
+- Increase timeout for Chrome driver
+
 ## [0.1.13] 2020-09-04
 
 ### Changed/Added
