@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    scrap_kit (0.1.14)
+    scrap_kit (0.1.15)
       activesupport (~> 6.0)
       watir (~> 6.16.5)
       webdrivers (~> 4.0)
@@ -25,7 +25,7 @@ GEM
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     rake (13.0.1)
-    regexp_parser (1.8.1)
+    regexp_parser (1.8.2)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)

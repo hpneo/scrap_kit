@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.15] 2020-10-25
+
+### Changed/Added
+- Add `--disable-dev-shm-usage` arguments to Chrome driver
+
 ## [0.1.14] 2020-10-10
 
 ### Changed/Added

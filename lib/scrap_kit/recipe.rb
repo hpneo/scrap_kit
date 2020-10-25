@@ -211,6 +211,7 @@ module ScrapKit
 
       if chrome_bin = ENV["GOOGLE_CHROME_SHIM"]
         options.add_argument "--no-sandbox"
+        options.add_argument "--disable-dev-shm-usage"
         options.binary = chrome_bin
       end
 
