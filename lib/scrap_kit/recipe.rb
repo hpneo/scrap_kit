@@ -96,6 +96,8 @@ module ScrapKit
       if element&.respond_to?(:tag_name)
         if element.tag_name.downcase == "input"
           return element.attribute_value(:value)
+        elsif element.tag_name.downcase == "img"
+          return element.attribute_value(:src)
         end
       end
 

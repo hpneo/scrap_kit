@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.16] 2020-11-20
+
+### Changed/Added
+- Return `src` value for `img` elements
+
 ## [0.1.15] 2020-10-25
 
 ### Changed/Added
